@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::before, *::after {
+  box-sizing: border-box;
+}
+@keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat center transparent;
+  background-size: cover;
+}
+.disc-container {
+  position: relative;
+}
+.point {
+  width: 26vw;
+  position: absolute;
+  left: 45vw;
+}
+.ring {
+  width: 82vw;
+}
+.light {
+  width: 82vw;
+  position: absolute;
+  display: block;
+  animation: circle 20s infinite linear;
+}
+.cover {
+  width: 50vw;
+  position: absolute;
+  border-radius: 50%;
+  display: block;
+  animation: circle 20s infinite linear;
+}
+.disc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 19vw;
+}
+
+.song-details {
+
+}
+
+.page>.links {
+
+}
