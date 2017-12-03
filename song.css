@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Helvetica, sans-serif;
   box-sizing: border-box;
 }
 *::before, *::after {
@@ -20,8 +21,28 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat center transparent;
+}
+.bg {
+  height: 100vh;
+  width: 100vw;
+  background: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat transparent;
   background-size: cover;
+  background-position-x: 50%;
+  background-position-y: center;
+  position: absolute;
+  z-index: -1;
+  transform: scale(1.5);
+  transform-origin: center top;
+}
+.bg::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 .disc-container {
   position: relative;
@@ -55,7 +76,19 @@
 }
 
 .song-details {
-
+  text-align: center;
+}
+.song-details .stitle {
+  font-size: 18px;
+  color: #fefefe;
+}
+.song-details .stitle span {
+  font-size: 16px;
+  color: rgba(250, 250, 250, 0.6);
+}
+.song-details p {
+  font-size: 14px;
+  color: rgba(250, 250, 250, 0.6);
 }
 
 .page>.links {
