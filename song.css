@@ -7,6 +7,10 @@
 *::before, *::after {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: #fff;
+}
 @keyframes circle {
   0% {
     transform: rotate(0deg);
@@ -26,9 +30,9 @@
   height: 100vh;
   width: 100vw;
   background: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat transparent;
+  opacity: 1;
   background-size: cover;
-  background-position-x: 50%;
-  background-position-y: center;
+  background-position: 50%;
   position: absolute;
   z-index: -1;
   transform: scale(1.5);
@@ -42,7 +46,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 .disc-container {
   position: relative;
@@ -59,13 +63,24 @@
   width: 82vw;
   position: absolute;
   display: block;
-  animation: circle 20s infinite linear;
 }
 .cover {
   width: 50vw;
   position: absolute;
   border-radius: 50%;
   display: block;
+}
+.pause.pausing {
+  width: 15vw;
+  position: absolute;
+  z-index: 2;
+  display: block;
+}
+.pause {
+  display: none;
+}
+.disc-container.playing .light,
+.disc-container.playing .cover {
   animation: circle 20s infinite linear;
 }
 .disc {
@@ -76,21 +91,55 @@
 }
 
 .song-details {
+  flex-grow: 1;
   text-align: center;
+  margin-top: 7vw;
 }
 .song-details .stitle {
-  font-size: 18px;
+  font-size: 4.3vw;
   color: #fefefe;
+  line-height: 1.1;
 }
 .song-details .stitle span {
-  font-size: 16px;
+  font-size: 3.9vw;
   color: rgba(250, 250, 250, 0.6);
 }
 .song-details p {
-  font-size: 14px;
+  font-size: 3.9vw;
   color: rgba(250, 250, 250, 0.6);
+  line-height: 7.7vw;
 }
-
+.song-details .lyric {
+  margin-top: 3.4vw;
+  height: 23vw;
+  overflow: hidden;
+}
+.lyric p.active {
+  color: #fefefe;
+}
 .page>.links {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.links>a {
+  width: 45.8vw;
+  padding: 2vw;
+  margin-bottom: 2.5vw;
+  font-size: 4.3vw;
+  text-align: center;
+  border: 1px solid #d33a31;
+  border-bottom-left-radius: 5.4vh;
+  border-bottom-right-radius: 5.4vh;
+  border-top-left-radius: 5.4vh;
+  border-top-right-radius: 5.4vh;
+  letter-spacing: 1vw;
+}
+.links .open {
+  color: #d33a31;
+  margin-right: 2.4vw;
+  background-color: transparent;
+}
+.links .download {
+  background-color: #d33a31;
 }
