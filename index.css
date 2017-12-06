@@ -1,0 +1,42 @@
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-size: 3.4vw;
+ }
+ a {
+   text-decoration: none;
+   color: #fff;
+ }
+ body {
+   height: 100vh;
+ }
+ .head {
+   height: 8.7vh;
+   background-color: #d43c33;
+   padding: 5.1vw 2.5vw;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+ }
+ .logo {
+   height: 3.4vh;
+ }
+ .head .downloadApp {
+   border: 1px solid #fff;
+   border-radius: 3.85vw;
+   font-size: 3.7vw;
+   line-height: 7.7vw;
+   padding: 0 3vw;
+ }
+ header ul {
+   display: flex;
+   line-height: 9.7vw;
+   text-align: center;
+ }
+ header li {
+   list-style: none;
+   flex: 1;
+   justify-content: center;
+   align-items: center;
+ }
