@@ -1,57 +1,69 @@
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-size: 3.4vw;
-   font-family: Helvetica, sans-serif;
- }
- a {
-   text-decoration: none;
-   color: #fff;
- }
- body {
-   height: 100vh;
- }
- .head {
-   height: 8.7vh;
-   background-color: #d43c33;
-   padding: 5.1vw 2.5vw;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
- }
- .logo {
-   height: 3.4vh;
- }
- .head .downloadApp {
-   border: 1px solid #fff;
-   border-radius: 3.85vw;
-   font-size: 3.7vw;
-   line-height: 7.7vw;
-   padding: 0 3vw;
- }
- header ul {
-   display: flex;
-   text-align: center;
- }
- header li {
-   list-style: none;
-   flex: 1;
-   justify-content: center;
-   align-items: center;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
- }
- header li span {
-   font-size: 3.6vw;
-   padding: 0 1.2vw;
-   line-height: 9.7vw;
-   display: inline-block;
-   position: relative;
- }
- header li.clicked span {
-   color: #d33a31;
- }
- header li.clicked span::after{
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 3.4vw;
+  font-family: Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+ul {
+list-style: none
+}
+
+body {
+  height: 100vh;
+}
+section>.title span{
+  font-size: 4vw;
+  border-left: 0.6vw solid #d33a31;
+  padding: 0 1.6vw;
+}
+section>.title {
+  padding: 3.6vw 0;
+}
+.head {
+  height: 8.7vh;
+  background-color: #d43c33;
+  padding: 5.1vw 2.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  height: 3.4vh;
+}
+.head .downloadApp {
+  border: 1px solid #fff;
+  border-radius: 3.85vw;
+  font-size: 3.7vw;
+  line-height: 7.7vw;
+  padding: 0 3vw;
+}
+header ul {
+  display: flex;
+  text-align: center;
+}
+header li {
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+header li span {
+  font-size: 3.6vw;
+  padding: 0 1.2vw;
+  line-height: 9.7vw;
+  display: inline-block;
+  position: relative;
+}
+header li.clicked span {
+  color: #d33a31;
+}
+header li.clicked span::after{
   content: '';
   background-color: #d33a31;
   position: absolute;
@@ -59,4 +71,57 @@
   left: 0;
   width: 100%;
   height: 0.48vw;
- }
+}
+#musicLists ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 1.8vw;
+}
+#musicLists ul img {
+  width: 100%;
+}
+#musicLists ul li {
+  width: calc(33.333333% - 0.6vw);
+  padding-bottom: 3.9vw;
+  position: relative;
+}
+#musicLists li p {
+  padding: 0.5vw 0.2vw 0 1.4vw;
+  display: -webkit-box;
+  height: 8vw;
+  line-height: 4vw;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#musicLists .like {
+  position: absolute;
+  right: 1.5vw;
+  top: 0.8vw;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#musicLists .icon-headset {
+  fill: #fff;
+  width: 3.5vw;
+  height: 3.5vw;
+}
+#musicLists .like span {
+  font-size: 0.8em;
+  margin-left: 0.5vw;
+}
+#lastestMusic li {
+  position: relative;
+}
+#lastestMusic .icon-play {
+  width: 6vw;
+  height: 6vw;
+  fill: #ccc;
+  position: absolute;
+  right: 2vw;
+  top: 5vw;
+}
