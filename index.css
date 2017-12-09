@@ -7,14 +7,17 @@
 }
 a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
 }
 ul {
-list-style: none
+  list-style: none
 }
 
 body {
   height: 100vh;
+}
+.hide {
+  display: none;
 }
 section>.title span{
   font-size: 4vw;
@@ -36,15 +39,24 @@ section>.title {
   height: 3.4vh;
 }
 .head .downloadApp {
+  color: #fff;
   border: 1px solid #fff;
   border-radius: 3.85vw;
   font-size: 3.7vw;
   line-height: 7.7vw;
   padding: 0 3vw;
 }
+header .fixed {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
 header ul {
   display: flex;
   text-align: center;
+  background-color: #fff;
 }
 header li {
   list-style: none;
@@ -71,6 +83,9 @@ header li.clicked span::after{
   left: 0;
   width: 100%;
   height: 0.48vw;
+}
+#musicLists {
+  margin-top: 26vw;
 }
 #musicLists ul {
   display: flex;
@@ -118,10 +133,64 @@ header li.clicked span::after{
   position: relative;
 }
 #lastestMusic .icon-play {
-  width: 6vw;
-  height: 6vw;
-  fill: #ccc;
+  width: 5.5vw;
+  height: 5.5vw;
+  fill: #bbb;
   position: absolute;
-  right: 2vw;
-  top: 5vw;
+  right: 2.5vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#lastestMusic li p {
+  line-height: 1.5em;
+}
+#lastestMusic li {
+  height: 13.3vw;
+  border-bottom: 1px solid rgba(194, 194, 194, 0.1);
+  margin-left: 2.4vw;
+  padding: 1.4vw 0;
+}
+#lastestMusic li .song-title {
+  color: #000;
+  font-size: 4.1vw;
+  font-weight: normal;
+}
+#lastestMusic li .song-details {
+  font-size: 2.9vw;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
+#lastestMusic .icon-sq {
+  width: 3vw;
+  height: 3vw;
+  margin: 1.6vw 1vw 0 0;
+}
+
+#ad {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: url(https://s3.music.126.net/m/s/img/recommand_bg_3x.png?f3a9aaa781c3bf3b543d129327d35fce) no-repeat center 0;
+  background-size: cover;
+  padding-top: 17.2vw;
+  padding-bottom: 8vw;
+}
+#ad .logosvg {
+  width: 55.6vw;
+}
+#ad .openApp {
+  font-size: 3.9vw;
+  line-height: 9.2vw;
+  color: #d33a31;
+  width: 81.6vw;
+  border: 1px solid #d33a31;
+  border-radius: 9.2vw; 
+  margin: 3.6vw 8.9vw 1.2vw;
+  text-align: center;
+}
+#ad p.copyright {
+  font-size: 2.9vw;
+  color: #888;
+  transform: scale(.75);
 }
