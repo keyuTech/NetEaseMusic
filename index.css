@@ -85,7 +85,7 @@ header li.clicked span::after{
   height: 0.48vw;
 }
 #musicLists {
-  margin-top: 26vw;
+  margin-top: 27vw;
 }
 #musicLists ul {
   display: flex;
@@ -128,6 +128,12 @@ header li.clicked span::after{
 #musicLists .like span {
   font-size: 0.8em;
   margin-left: 0.5vw;
+}
+#lastestMusic .loading {
+  text-align: center;
+}
+#lastestMusic .loading  img {
+  width: 5vw;
 }
 #lastestMusic li {
   position: relative;

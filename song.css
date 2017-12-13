@@ -29,7 +29,7 @@ a {
 .bg {
   height: 100vh;
   width: 100vw;
-  background: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat transparent;
+  background-image: url(http://p4.music.126.net/X4c1HN04ywwj7svDYT0DLQ==/109951163071679251.jpg) no-repeat transparent;
   opacity: 1;
   background-size: cover;
   background-position: 50%;
