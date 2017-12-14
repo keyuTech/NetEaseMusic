@@ -3,33 +3,35 @@ $(function(){
   $.get("./songs.json").then(function(response){
       let songs = response
       let song = songs.filter((s) => {return s.id === id})[0]
-      let url = song.url
-      let imgUrl = "url("+"'"+song.cover+"'"+")"
-      console.log(imgUrl)
-      let audio = new Audio
-      audio.autoplay = true
-      audio.src = url
-      audio.oncanplay = function(){
-        $('.disc-container').addClass('playing')
-      }
-      $('.disc').on('click', function(){
-        if(audio.paused) {
-          audio.play()
-          $('.pause').removeClass('pausing')
-          $('.disc-container').addClass('playing')
-        }else{
-          audio.pause()
-          $('.pause').addClass('pausing')
-          $('.disc-container').removeClass('playing')
-        }
-      })
-      $('.bg').css("background-image", imgUrl)
-      $('.cover').attr("src", song.cover)
+      let {url, cover, title, author, lyric} = song
+      initPlayer(url, cover)
+      setDetails(title, author, lyric)
     }
   )
 
-  $.get("./lyric.json").then(function(obj){
-    let {lyric} = obj
+  function initPlayer(url, cover){
+    let audio = new Audio
+    audio.autoplay = true
+    audio.src = url
+    audio.oncanplay = function(){
+      $('.disc-container').addClass('playing')
+    }
+    $('.disc').on('click', function(){
+      if(audio.paused) {
+        audio.play()
+        $('.pause').removeClass('pausing')
+        $('.disc-container').addClass('playing')
+      }else{
+        audio.pause()
+        $('.pause').addClass('pausing')
+        $('.disc-container').removeClass('playing')
+      }
+    })
+    $('.bg').css("background-image", "url("+"'"+cover+"'"+")")
+    $('.cover').attr("src", cover)
+  }
+
+  function setDetails(title, author, lyric){
     let lyricArr = lyric.split("\n")
     let reg = /^\[(.+)\](.*)$/
     lyricArr = lyricArr.map(function(str, index){
@@ -46,7 +48,9 @@ $(function(){
         $p.appendTo($lyric.children('.lines'))
       }
     })
-  })
-
-
+    let $title = $(".stitle")
+    $title.text(title)
+    let $singer = $(".singer")
+    $singer.text(author)
+  }
 })

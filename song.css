@@ -79,9 +79,14 @@ a {
 .pause {
   display: none;
 }
+.disc-container .light,
+.disc-container .cover {
+  animation: circle 20s infinite linear;
+  animation-play-state: paused;
+}
 .disc-container.playing .light,
 .disc-container.playing .cover {
-  animation: circle 20s infinite linear;
+  animation-play-state: running;
 }
 .disc {
   display: flex;
