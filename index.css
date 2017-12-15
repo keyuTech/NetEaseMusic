@@ -84,8 +84,8 @@ header li.clicked span::after{
   width: 100%;
   height: 0.48vw;
 }
-#musicLists {
-  margin-top: 27vw;
+ul#tabs {
+  margin-top: 25vw;
 }
 #musicLists ul {
   display: flex;
@@ -129,16 +129,20 @@ header li.clicked span::after{
   font-size: 0.8em;
   margin-left: 0.5vw;
 }
-#lastestMusic .loading {
+#lastestMusic .loading, 
+.hot-songs .loading{
   text-align: center;
 }
-#lastestMusic .loading  img {
+#lastestMusic .loading img,
+.hot-songs .loading img {
   width: 5vw;
 }
-#lastestMusic li {
+#lastestMusic li,
+.hot-songs li {
   position: relative;
 }
-#lastestMusic .icon-play {
+#lastestMusic .icon-play,
+.hot-songs .icon-play {
   width: 5.5vw;
   height: 5.5vw;
   fill: #bbb;
@@ -147,27 +151,32 @@ header li.clicked span::after{
   top: 50%;
   transform: translateY(-50%);
 }
-#lastestMusic li p {
+#lastestMusic li p,
+.hot-songs li p {
   line-height: 1.5em;
 }
-#lastestMusic li {
+#lastestMusic li,
+.hot-songs li {
   height: 13.3vw;
   border-bottom: 1px solid rgba(194, 194, 194, 0.1);
   margin-left: 2.4vw;
   padding: 1.4vw 0;
 }
-#lastestMusic li .song-title {
+#lastestMusic li .song-title,
+.hot-songs li .song-title {
   color: #000;
   font-size: 4.1vw;
   font-weight: normal;
 }
-#lastestMusic li .song-details {
+#lastestMusic li .song-details,
+.hot-songs li .song-details {
   font-size: 2.9vw;
   color: #888;
   display: flex;
   align-items: center;
 }
-#lastestMusic .icon-sq {
+#lastestMusic .icon-sq,
+.hot-songs .icon-sq {
   width: 3vw;
   height: 3vw;
   margin: 1.6vw 1vw 0 0;
@@ -199,4 +208,50 @@ header li.clicked span::after{
   font-size: 2.9vw;
   color: #888;
   transform: scale(.75);
+}
+
+.hot-songs .hot-song {
+  position: relative;
+}
+.hot-songs .rank-number {
+  display: block;
+  float: left;
+  font-size: 4.1vw;
+  color: #999;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hot-songs .rank-number.rank-top {
+  color: #df3436;
+}
+.hot-songs .song-content {
+  margin-left: 7vw;
+}
+.hot-title {
+  height: 39.9vw;
+  background: url("./image/hot_music_bg.jpg") no-repeat center;
+  background-size: cover;
+  padding-top: 8.5vw;
+  padding-left: 5vw;
+}
+.title-date {
+  color: #fff;
+  font-size: 2.9vw;
+  margin-top: 1.5vw;
+}
+.hot-title img {
+  width: 34.3vw;
+}
+.hot-footer {
+  text-align: center;
+  padding: 4.8vw;
+}
+.hot-footer>a {
+  color: #999;
+}
+.icon-right {
+  fill: rgb(204, 204, 204);
+  width: 3vw;
+  height: 3vw;
 }

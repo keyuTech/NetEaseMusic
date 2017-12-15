@@ -1,6 +1,5 @@
 $(function(){
   $.get('./songs.json', function(response){
-    console.log(response)
     let items = response
     items.forEach((i) => {
       let $li = $(`
@@ -22,6 +21,20 @@ $(function(){
     $(".lastestMusic").append($li)
     })
     $(".loading").addClass('hide')
+  })
+
+  $(".tab-nav").on('click', '.tab-item>li', function(e){
+    let $li = $(e.currentTarget).addClass('clicked')
+    $li.siblings().removeClass('clicked')
+    let index = $li.index()
+    $("#tabs>li").eq(index).addClass('clicked').siblings().removeClass('clicked')
+    let $tabs = $("#tabs").children().eq(index)
+    $tabs.removeClass('hide').addClass('show').siblings().removeClass('show').addClass('hide')
+    $li.trigger('tabChange', index)
+  })
+
+  $('.tab-nav').on('tabChange', function(e, index){
+    console.log(e, index)
   })
 })
 
