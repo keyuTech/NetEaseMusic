@@ -29,6 +29,10 @@ $(function(){
     })
     $('.bg').css("background-image", "url("+"'"+cover+"'"+")")
     $('.cover').attr("src", cover)
+    setInterval(()=>{
+      let time = audio.currentTime
+      setLyric(time)
+    }, 500)
   }
 
   function setDetails(title, author, lyric){
@@ -52,5 +56,30 @@ $(function(){
     $title.text(title)
     let $singer = $(".singer")
     $singer.text(author)
+  }
+
+  function setLyric(time){
+    let second = ~~(time % 60)
+    second = second>=10 ? second+"" : "0"+second
+    let min = ~~(time / 60)
+    let now = "0"+min+":"+second
+    let current = `${now}`
+    let $lines = $(".lines>p")
+    let $currentLine
+    for(let i=0; i<$lines.length; i++){
+      let currentLineTime = $lines.eq(i).attr("data-time")
+      let nextLineTime = $lines.eq(i+1).attr("data-time")
+      if($lines[i+1] !== undefined && currentLineTime < current && nextLineTime > current){
+        $currentLine = $lines.eq(i)
+        break
+      }
+    }
+    if($currentLine){
+      $currentLine.addClass('active').prev().removeClass('active')      
+      let top = $currentLine.offset().top
+      let linesTop = $('.lines').offset().top
+      let delta = top - linesTop - $('.lyric').height()/3
+      $('.lines').css('transform', `translateY(-${delta}px)`)
+    }
   }
 })

@@ -98,9 +98,10 @@ a {
 .song-details {
   flex-grow: 1;
   text-align: center;
-  margin-top: 7vw;
+  margin-top: 5vw;
 }
-.song-details .stitle {
+.song-details .stitle,
+.song-details .dash {
   font-size: 4.3vw;
   color: #fefefe;
   line-height: 1.1;
@@ -113,6 +114,12 @@ a {
   font-size: 3.9vw;
   color: rgba(250, 250, 250, 0.6);
   line-height: 7.7vw;
+}
+.song-details .lines {
+  transition: transform 0.3s;
+}
+.song-details .lines p.active {
+  color: #fff; 
 }
 .song-details .lyric {
   margin-top: 3.4vw;
