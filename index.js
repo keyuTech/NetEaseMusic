@@ -72,7 +72,20 @@ $(function(){
         $('.hot-song').slice(0, 3).addClass('rank-top')
       })
     }else if(index === 2){
-
+      if($li.attr('downloaded') === 'yes'){
+        return
+      }
+      $.get('./search.json', function(response){
+        let items = response
+        items.forEach((i) => {
+          let $searchTep = $(`
+          <div class="search-item"><a href="">${i.title}</a></div>
+          `)
+        $(".search-items").append($searchTep)
+        })
+        $('#tabs>li').eq(index).attr('downloaded', 'yes')
+        $('.loading').addClass('hide')
+      })
     }
   })
 
