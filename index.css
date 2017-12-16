@@ -9,6 +9,9 @@ a {
   text-decoration: none;
   color: #000;
 }
+div, a {
+  -webkit-tap-highlight-color:rgba(0,0,0,0); 
+}
 ul {
   list-style: none
 }
@@ -306,14 +309,14 @@ header li.clicked span::after{
   font-size: 2.9vw;
 }
 .hot-search .search-items {
-  margin-top: 3.4vw;
+  margin-top: 2.5vw;
 } 
 .hot-search .search-item {
   display: inline-block;
   padding: 0 3.4vw;
   margin-right: 2vw;
   margin-bottom: 2vw;
-  padding: 2vw 3.4vw;
+  padding: 1.5vw 3.4vw;
   border: 1px solid rgb(238, 238, 238);
   border-radius: 6vw;
 }
