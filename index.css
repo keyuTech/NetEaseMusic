@@ -215,7 +215,7 @@ header li.clicked span::after{
   top: 50%;
   transform: translateY(-50%);
 }
-.hot-songs .rank-number.rank-top {
+.hot-songs .hot-song.rank-top .rank-number {
   color: #df3436;
 }
 .hot-songs .song-content {
