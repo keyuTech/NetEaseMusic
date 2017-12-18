@@ -280,13 +280,16 @@ header li.clicked span::after{
   margin: 3.6vw 2.4vw;
   position: relative;
 }
-#search .icon-search {
+.search-input .icon-search {
   width: 3vw;
   height: 3vw;
   position: absolute;
   left: 2vw;
   top: 2vw;
   z-index: 5;
+}
+.search-input .delete-input {
+  
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
   color: #c9c9c9;
@@ -299,6 +302,27 @@ header li.clicked span::after{
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #c9c9c9;
+}
+.search-words {
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+  color: #507daf;
+  padding: 3.5vw 2.4vw;
+}
+.search-words p {
+  font-size: 3.6vw;
+}
+.search-result {
+  font-size: 3.6vw;
+  line-height: 10.9vw;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+  padding-left: 2.4vw;
+  display: flex;
+  align-items: center;
+}
+.search-result .icon-search {
+  width: 3.6vw;
+  height: 3.6vw;
+  margin-right: 1.6vw;
 }
 .hot-search {
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);

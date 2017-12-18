@@ -89,6 +89,51 @@ $(function(){
     }
   })
 
+  $('.search-input input').on('input', function(e){
+    let $input = $(e.currentTarget)
+    let $value = $input.val().trim()
+    search($value).then((result)=>{
+      
+    })
+  })
 
+
+  function search(keyword){
+    return new Promise((resolve, reject)=>{
+      var database = [
+        {
+          "id": 1,
+          "title": "光るなら"
+        },
+        {
+          "id": 2,
+          "title": "前前前世 (movie ver.)"
+        },
+        {
+          "id": 3,
+          "title": "玫瑰与小鹿"
+        },
+        {
+          "id": 4,
+          "title": "那些花儿"
+        },
+        {
+          "id": 5,
+          "title": "对不起我爱你"
+        },
+        {
+          "id": 6,
+          "title": "外面的世界"
+        }
+      ]
+      let result = database.filter(function(item){
+        return item.title.indexOf(keyword) >= 0
+      })
+
+      setTimeout(function(){
+        resolve(result)
+      }, (Math.random()*1000+1500))
+    })
+  }
+  window.search = search
 })
-
