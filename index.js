@@ -79,9 +79,9 @@ $(function(){
         let items = response
         items.forEach((i) => {
           let $searchTep = $(`
-          <div class="search-item"><a href="">${i.title}</a></div>
+          <div class="hot-search-item"><a href="">${i.title}</a></div>
           `)
-        $(".search-items").append($searchTep)
+        $(".hot-search-items").append($searchTep)
         })
         $('#tabs>li').eq(index).attr('downloaded', 'yes')
         $('.loading').addClass('hide')
@@ -92,9 +92,32 @@ $(function(){
   $('.search-input input').on('input', function(e){
     let $input = $(e.currentTarget)
     let $value = $input.val().trim()
-    search($value).then((result)=>{
-      
-    })
+    $('.search-words').removeClass('hide')
+    $('.search-content').text($value)
+    $('.hot-search').addClass('hide')
+    if($value.length !== 0){
+      search($value).then((result)=>{
+        if(result.length !== 0){
+          $('.search-items').empty()
+          result.forEach(function(item){
+            console.log(item)
+            let $result = `
+            <div class="search-result">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljOWNhIiBkPSJNMjUuMTgxLDIzLjUzNWwtMS40MTQsMS40MTRsLTcuMzE1LTcuMzE0CgkJQzE0LjcwOSwxOS4xMDcsMTIuNDYsMjAsMTAsMjBDNC40NzcsMjAsMCwxNS41MjMsMCwxMEMwLDQuNDc3LDQuNDc3LDAsMTAsMGM1LjUyMywwLDEwLDQuNDc3LDEwLDEwYzAsMi4zNDItMC44MTEsNC40OS0yLjE2LDYuMTk1CgkJTDI1LjE4MSwyMy41MzV6IE0xMCwyYy00LjQxOCwwLTgsMy41ODItOCw4czMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThTMTQuNDE4LDIsMTAsMnoiLz48L3N2Zz4=" alt="" class="icon-search">
+              <span class="search-text">搜索内容</span>
+            </div>
+            `
+            $('.search-items').append($result)
+            console.log(item.title)
+            $('.search-text').text(item.title)
+          })
+        }
+      })
+    }else{
+      $('.search-items').empty()
+      $('.search-words').addClass('hide')
+      $('.hot-search').removeClass('hide')
+    }
   })
 
 
@@ -129,7 +152,7 @@ $(function(){
       let result = database.filter(function(item){
         return item.title.indexOf(keyword) >= 0
       })
-
+      console.log(result,'result')
       setTimeout(function(){
         resolve(result)
       }, (Math.random()*1000+1500))

@@ -289,7 +289,11 @@ header li.clicked span::after{
   z-index: 5;
 }
 .search-input .delete-input {
-  
+  width: 3.5vw;
+  height: 3.5vw;
+  position: absolute;
+  right: 2vw;
+  top: 1.5vw;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
   color: #c9c9c9;
@@ -332,10 +336,10 @@ header li.clicked span::after{
   color: #666;
   font-size: 2.9vw;
 }
-.hot-search .search-items {
+.hot-search .hot-search-items {
   margin-top: 2.5vw;
 } 
-.hot-search .search-item {
+.hot-search .hot-search-item {
   display: inline-block;
   padding: 0 3.4vw;
   margin-right: 2vw;
