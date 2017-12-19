@@ -89,30 +89,37 @@ $(function(){
     }
   })
 
+  let timer = undefined
   $('.search-input input').on('input', function(e){
     let $input = $(e.currentTarget)
     let $value = $input.val().trim()
     $('.search-words').removeClass('hide')
     $('.search-content').text($value)
     $('.hot-search').addClass('hide')
-    if($value.length !== 0){
-      search($value).then((result)=>{
-        if(result.length !== 0){
-          $('.search-items').empty()
-          result.forEach(function(item){
-            console.log(item)
-            let $result = `
-            <div class="search-result">
-              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljOWNhIiBkPSJNMjUuMTgxLDIzLjUzNWwtMS40MTQsMS40MTRsLTcuMzE1LTcuMzE0CgkJQzE0LjcwOSwxOS4xMDcsMTIuNDYsMjAsMTAsMjBDNC40NzcsMjAsMCwxNS41MjMsMCwxMEMwLDQuNDc3LDQuNDc3LDAsMTAsMGM1LjUyMywwLDEwLDQuNDc3LDEwLDEwYzAsMi4zNDItMC44MTEsNC40OS0yLjE2LDYuMTk1CgkJTDI1LjE4MSwyMy41MzV6IE0xMCwyYy00LjQxOCwwLTgsMy41ODItOCw4czMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThTMTQuNDE4LDIsMTAsMnoiLz48L3N2Zz4=" alt="" class="icon-search">
-              <span class="search-text">搜索内容</span>
-            </div>
-            `
-            $('.search-items').append($result)
-            console.log(item.title)
-            $('.search-text').text(item.title)
-          })
-        }
-      })
+    if($value !== ''){
+      if(timer){
+        clearTimeout(timer)
+      }
+      timer = setTimeout(function(){
+        search($value).then((result)=>{
+          timer = undefined
+          if(result.length !== 0){
+            $('.search-items').empty()
+            result.forEach(function(item){
+              console.log(item)
+              let $result = `
+              <div class="search-result">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljOWNhIiBkPSJNMjUuMTgxLDIzLjUzNWwtMS40MTQsMS40MTRsLTcuMzE1LTcuMzE0CgkJQzE0LjcwOSwxOS4xMDcsMTIuNDYsMjAsMTAsMjBDNC40NzcsMjAsMCwxNS41MjMsMCwxMEMwLDQuNDc3LDQuNDc3LDAsMTAsMGM1LjUyMywwLDEwLDQuNDc3LDEwLDEwYzAsMi4zNDItMC44MTEsNC40OS0yLjE2LDYuMTk1CgkJTDI1LjE4MSwyMy41MzV6IE0xMCwyYy00LjQxOCwwLTgsMy41ODItOCw4czMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThTMTQuNDE4LDIsMTAsMnoiLz48L3N2Zz4=" alt="" class="icon-search">
+                <span class="search-text">搜索内容</span>
+              </div>
+              `
+              $('.search-items').append($result)
+              console.log(item.title)
+              $('.search-text').text(item.title)
+            })
+          }
+        })
+      }, 1000)
     }else{
       $('.search-items').empty()
       $('.search-words').addClass('hide')
@@ -123,6 +130,7 @@ $(function(){
 
   function search(keyword){
     return new Promise((resolve, reject)=>{
+      console.log(keyword, '搜索词')
       var database = [
         {
           "id": 1,
@@ -152,8 +160,8 @@ $(function(){
       let result = database.filter(function(item){
         return item.title.indexOf(keyword) >= 0
       })
-      console.log(result,'result')
       setTimeout(function(){
+        console.log(result,'result')
         resolve(result)
       }, (Math.random()*1000+1500))
     })
