@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+*::before {
+  box-sizing: border-box;
+}
+*::after {
+  box-sizing: border-box;
+}
+ul, li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.page {
+  display: flex;
+  height: 100vh;
+}
+.page aside {
+  width: 20vw;
+  border-right: 2px solid #888;
+  display: flex;
+  flex-direction: column;
+}
+.page main {
+  flex-grow: 1;
+}
+aside .newSong {
+  font-size: 18px;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 2px solid #888;
+  cursor: pointer;
+}
+aside .newSong.active {
+  background-color: #d4d4d4;
+}
+aside .songList {
+  flex-grow: 1;
+}
+aside .songList li {
+  border-bottom: 1px solid #aaa;
+  padding: 10px;
+  margin-left: 10px;
+}
+aside .songList li.active {
+  background-color: #d4d4d4;
+}
+.uploadArea {
+  text-align: center;
+  display: flex;
+}
+#container {
+  border: 2px dashed #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  width: 20vw;
+  flex-direction: column;
+}
+aside .pickfiles {
+  cursor: pointer;
+  padding: 50px 20px;
+}
+aside .pickfiles p.uploadButton {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
