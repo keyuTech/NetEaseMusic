@@ -23,7 +23,6 @@ a {
 }
 .page aside {
   width: 20vw;
-  border-right: 2px solid #888;
   display: flex;
   flex-direction: column;
 }
@@ -71,4 +70,54 @@ aside .pickfiles {
 aside .pickfiles p.uploadButton {
   font-size: 15px;
   margin-bottom: 10px;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  background-color: #d4d4d4;
+  padding: 20px 50px;
+}
+main form {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+}
+main form .row label {
+  width: 5em;
+}
+main form .row {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+}
+main form .row input[type='text'] {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 25vw;
+}
+main form .row input[type='submit'] {
+  margin-left: 5em;
+  height: 28px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+main .coverArea {
+  min-width: 30vw;
+  max-height: 30vw;
+  margin-left: 5vw;
+}
+main .coverArea p {
+  margin-bottom: 10px;
+}
+main .coverArea .cover {
+  border: 2px dashed #888;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 20px;
 }

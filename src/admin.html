@@ -12,7 +12,7 @@
 <body>
   <div class="page">
     <aside>
-      <div class="newSong active">
+      <div class="newSong">
         新建歌曲
       </div>
       <ul class="songList">
@@ -40,28 +40,35 @@
         <div class="row">
           <label>
             歌曲名
-            <input type="text">
           </label>
+          <input type="text">
         </div>
         <div class="row">
           <label>
             歌手
-            <input type="text">
           </label>
+          <input type="text">
         </div>
         <div class="row">
           <label>
             链接
-            <input type="text">
           </label>
+          <input type="text">
         </div>
         <div class="row">
           <label>
-            <input type="submit" value="保存">
+            封面链接
           </label>
+          <input type="text">
         </div>
-
+        <div class="row">
+          <input type="submit" value="保存">
+        </div>
       </form>
+      <div class="coverArea">
+        <p>封面</p>
+        <div class="cover"></div>
+      </div>
     </main>
   </div>
 
