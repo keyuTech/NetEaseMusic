@@ -39,7 +39,7 @@ aside .newSong {
 aside .newSong.active {
   background-color: #d4d4d4;
 }
-aside .songList {
+aside .songListContainer {
   flex-grow: 1;
 }
 aside .songList li {
@@ -82,6 +82,10 @@ main form {
   flex-direction: column;
   font-size: 18px;
 }
+main form h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
 main form .row label {
   width: 5em;
 }
@@ -93,12 +97,12 @@ main form .row {
 main form .row input[type='text'] {
   border: 1px solid #ddd;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 8px 12px;
   width: 25vw;
 }
 main form .row input[type='submit'] {
   margin-left: 5em;
-  height: 28px;
+  height: 34px;
   padding-left: 16px;
   padding-right: 16px;
   border: 1px solid #ddd;
