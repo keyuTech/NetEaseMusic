@@ -64,7 +64,8 @@ header ul {
 }
 header li {
   list-style: none;
-  flex: 1;
+  width: calc(100% / 3);
+  /* flex: 1; */
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -89,7 +90,7 @@ header li.clicked span::after{
   height: 0.48vw;
 }
 #musicLists {
-  padding-top: 96px;
+  padding-top: 25vw;
 }
 #musicLists ul {
   display: flex;
@@ -213,7 +214,9 @@ header li.clicked span::after{
   color: #888;
   transform: scale(.75);
 }
-
+#hot {
+  padding-top: 25vw;
+}
 .hot-songs .hot-song {
   position: relative;
 }
@@ -234,7 +237,7 @@ header li.clicked span::after{
 }
 .hot-title {
   height: 39.9vw;
-  background: url("./image/hot_music_bg.jpg") no-repeat center;
+  background: url("../../image/hot_music_bg.jpg") no-repeat center;
   background-size: cover;
   position: relative;
   z-index: -2;
@@ -273,7 +276,9 @@ header li.clicked span::after{
   width: 3vw;
   height: 3vw;
 }
-
+#search {
+  padding-top: 25vw;
+}
 #search .search-input>input {
   padding: 1.4vw 0;
   width: 100%;
