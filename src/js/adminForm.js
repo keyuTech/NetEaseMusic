@@ -78,6 +78,16 @@
       }, (error) => {
         console.error(error)
       })
+    },
+    update(data){
+      var song = AV.Object.createWithoutData('Song', this.data.id)
+      song.set('name', data.name)
+      song.set('singer', data.singer)
+      song.set('url', data.url)
+      return song.save().then((response) => {
+        Object.assign(this.data, data)
+        return response
+      })
     }
   }
   let controller = {
@@ -92,31 +102,50 @@
         this.view.render(this.model.data)
       })
       window.eventHub.on('new', (data) => {
-        if(this.model.data.id){
+        if (this.model.data.id) {
           this.model.data = {
             id: '', name: '', singer: '', url: ''
           }
-        }else{
+        } else {
           Object.assign(this.model.data, data)
         }
         console.log(this.model.data)
         this.view.render(this.model.data)
       })
     },
+    create() {
+      let need = 'name singer url'.split(' ')
+      let data = {}
+      need.map((string) => {
+        data[string] = this.view.$el.find(`input[name="${string}"]`).val()
+      })
+      this.model.create(data).then(() => {
+        this.view.render({})
+        let string = JSON.stringify(this.model.data)
+        let object = JSON.parse(string)
+        window.eventHub.trigger('create', object)
+      })
+    },
+    update() {
+      let need = 'name singer url'.split(' ')
+      let data = {}
+      need.map((string) => {
+        data[string] = this.view.$el.find(`input[name="${string}"]`).val()
+      })
+      this.model.update(data).then(()=>{
+        let copy = JSON.stringify(this.model.data)
+        let object = JSON.parse(copy)
+        window.eventHub.trigger('update', object)
+      })
+    },
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
         e.preventDefault()
-        let need = 'name singer url'.split(' ')
-        let data = {}
-        need.map((string) => {
-          data[string] = this.view.$el.find(`input[name="${string}"]`).val()
-        })
-        this.model.create(data).then(() => {
-          this.view.render({})
-          let string = JSON.stringify(this.model.data)
-          let object = JSON.parse(string)
-          window.eventHub.trigger('create', object)
-        })
+        if (this.model.data.id) {
+          this.update()
+        } else {
+          this.create()
+        }
       })
     }
   }
