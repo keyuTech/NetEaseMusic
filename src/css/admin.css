@@ -83,7 +83,7 @@ main form {
   flex-direction: column;
   font-size: 18px;
 }
-main form h1 {
+main h1 {
   font-size: 22px;
   margin-bottom: 10px;
 }
