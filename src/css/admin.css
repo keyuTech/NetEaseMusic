@@ -46,6 +46,7 @@ aside .songList li {
   border-bottom: 1px solid #aaa;
   padding: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }
 aside .songList li.active {
   background-color: #d4d4d4;
