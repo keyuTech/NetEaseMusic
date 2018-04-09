@@ -74,7 +74,6 @@
             break
           }
         }
-        console.log(data)
         let copy = JSON.stringify(data)
         let object = JSON.parse(copy)
         window.eventHub.trigger('select', object)
