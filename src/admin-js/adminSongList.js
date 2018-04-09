@@ -11,9 +11,12 @@
     render(data) {
       this.init()
       this.$el.html(this.template)
-      let { songs } = data
+      let { songs, selectedId } = data
       let liList = songs.map((song) => {
         let li = $('<li></li>').text(song.name).attr('data-id', song.id)
+        if(song.id === data.selectedId){
+          li.addClass('active')
+        }
         return li
       })
       this.$el.find('ul').empty()
@@ -21,17 +24,14 @@
         this.$el.find('ul').append(li)
       })
     },
-    activeItem(li) {
-      let $li = $(li)
-      $li.addClass('active').siblings('.active').removeClass('active')
-    },
     removeActive() {
       this.$el.find('.active').removeClass('active')
     }
   }
   let model = {
     data: {
-      songs: []
+      songs: [],
+      selectedId: undefined
     },
     find() {
       let query = new AV.Query('Song')
@@ -64,8 +64,9 @@
     },
     bindEvents() {
       this.view.$el.on('click', 'li', (e) => {
-        this.view.activeItem(e.currentTarget)
         let songId = e.currentTarget.getAttribute('data-id')
+        this.model.data.selectedId = songId
+        this.view.render(this.model.data)
         let data = []
         let songs = this.model.data.songs
         for (let i = 0; i < songs.length; i++) {
