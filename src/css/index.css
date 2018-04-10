@@ -229,7 +229,7 @@ header li.clicked span::after{
   top: 50%;
   transform: translateY(-50%);
 }
-.hot-songs .hot-song.rank-top .rank-number {
+.hot-songs .hot-song .rank-top.rank-number {
   color: #df3436;
 }
 .hot-songs .song-content {
@@ -281,7 +281,7 @@ header li.clicked span::after{
 }
 #search .search-input>input {
   padding: 1.4vw 0;
-  width: 100%;
+  width: 90%;
   border: none;
   background-color: transparent;
   position: absolute;
@@ -363,4 +363,9 @@ header li.clicked span::after{
   padding: 1.5vw 3.4vw;
   border: 1px solid rgb(238, 238, 238);
   border-radius: 6vw;
+}
+.hot-search .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

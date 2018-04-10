@@ -1,5 +1,5 @@
-$(function(){
-  $.get('./songs.json', function(response){
+$(function () {
+  $.get('./songs.json', function (response) {
     let items = response
     items.forEach((i) => {
       let $li = $(`
@@ -18,12 +18,12 @@ $(function(){
         </a>
       </li>
         `)
-    $(".lastestMusic").append($li)
+      $(".lastestMusic").append($li)
     })
     $(".loading").addClass('hide')
   })
 
-  $(".tab-nav").on('click', '.tab-item>li', function(e){
+  $(".tab-nav").on('click', '.tab-item>li', function (e) {
     let $li = $(e.currentTarget).addClass('clicked')
     $li.siblings().removeClass('clicked')
     let index = $li.index()
@@ -33,18 +33,18 @@ $(function(){
     $li.trigger('tabChange', index)
   })
 
-  $('.tab-nav').on('tabChange', function(e, index){
+  $('.tab-nav').on('tabChange', function (e, index) {
     let $li = $('#tabs>li').eq(index)
-    if(index === 1){
-      if($li.attr('downloaded') === 'yes'){
+    if (index === 1) {
+      if ($li.attr('downloaded') === 'yes') {
         return
       }
       $.get('./hotsongs.json').then((response) => {
         response.forEach((i) => {
           let $id
-          if(i.id < 10){
+          if (i.id < 10) {
             $id = '0' + i.id
-          }else{
+          } else {
             $id = i.id
           }
           let $template = $(`
@@ -65,23 +65,23 @@ $(function(){
               </div>
             </a>
           </li>`)
-        $(".hot-songs>ul").append($template)
+          $(".hot-songs>ul").append($template)
         })
         $('#tabs>li').eq(index).attr('downloaded', 'yes')
         $(".loading").addClass('hide')
         $('.hot-song').slice(0, 3).addClass('rank-top')
       })
-    }else if(index === 2){
-      if($li.attr('downloaded') === 'yes'){
+    } else if (index === 2) {
+      if ($li.attr('downloaded') === 'yes') {
         return
       }
-      $.get('./search.json', function(response){
+      $.get('./search.json', function (response) {
         let items = response
         items.forEach((i) => {
           let $searchTep = $(`
           <div class="hot-search-item"><a href="">${i.title}</a></div>
           `)
-        $(".hot-search-items").append($searchTep)
+          $(".hot-search-items").append($searchTep)
         })
         $('#tabs>li').eq(index).attr('downloaded', 'yes')
         $('.loading').addClass('hide')
@@ -90,23 +90,22 @@ $(function(){
   })
 
   let timer = undefined
-  $('.search-input input').on('input', function(e){
+  $('.search-input input').on('input', function (e) {
     let $input = $(e.currentTarget)
     let $value = $input.val().trim()
     $('.search-words').removeClass('hide')
     $('.search-content').text($value)
     $('.hot-search').addClass('hide')
-    if($value !== ''){
-      if(timer){
+    if ($value !== '') {
+      if (timer) {
         clearTimeout(timer)
       }
-      timer = setTimeout(function(){
-        search($value).then((result)=>{
+      timer = setTimeout(function () {
+        search($value).then((result) => {
           timer = undefined
-          if(result.length !== 0){
+          if (result.length !== 0) {
             $('.search-items').empty()
-            result.forEach(function(item){
-              console.log(item)
+            result.forEach(function (item) {
               let $result = `
               <div class="search-result">
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljOWNhIiBkPSJNMjUuMTgxLDIzLjUzNWwtMS40MTQsMS40MTRsLTcuMzE1LTcuMzE0CgkJQzE0LjcwOSwxOS4xMDcsMTIuNDYsMjAsMTAsMjBDNC40NzcsMjAsMCwxNS41MjMsMCwxMEMwLDQuNDc3LDQuNDc3LDAsMTAsMGM1LjUyMywwLDEwLDQuNDc3LDEwLDEwYzAsMi4zNDItMC44MTEsNC40OS0yLjE2LDYuMTk1CgkJTDI1LjE4MSwyMy41MzV6IE0xMCwyYy00LjQxOCwwLTgsMy41ODItOCw4czMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThTMTQuNDE4LDIsMTAsMnoiLz48L3N2Zz4=" alt="" class="icon-search">
@@ -120,17 +119,15 @@ $(function(){
           }
         })
       }, 1000)
-    }else{
+    } else {
       $('.search-items').empty()
       $('.search-words').addClass('hide')
       $('.hot-search').removeClass('hide')
     }
   })
 
-
   function search(keyword){
     return new Promise((resolve, reject)=>{
-      console.log(keyword, '搜索词')
       var database = [
         {
           "id": 1,
@@ -167,4 +164,20 @@ $(function(){
     })
   }
   window.search = search
+
+  find().then(()=>{
+    console.log()
+  })
+  function find() {
+    data: {
+      songs: []
+    }
+    var query = new AV.Query('Song')
+    return query.find().then((songs) => {
+      this.data.songs = songs.map((song) => {
+        return { id: song.id, ...song.attributes }
+      })
+      return songs
+    })
+  }
 })
