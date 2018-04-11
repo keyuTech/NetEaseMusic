@@ -1,6 +1,6 @@
 {
   let view = {
-    el: '.admin-loading',
+    el: '#siteLoading',
     show() {
       $(this.el).addClass('active')
     },
@@ -17,7 +17,7 @@
       window.eventHub.on('beforeUpload', () => {
         this.view.show()
       })
-      window.eventHub.on('trigger', () => {
+      window.eventHub.on('afterUpload', () => {
         this.view.hide()
       })
     }
