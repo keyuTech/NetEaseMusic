@@ -1,10 +1,12 @@
 {
   let view ={
-    el: '.page',
+    el: '#app',
     template: `
     <audio src="{{url}}"></audio>
     `,
     render(data){
+      $(this.el).find('.bg').css('background-image', `url("${data.cover}")`)
+      $(this.el).find('.cover').attr("src", data.cover)
       $(this.el).append(this.template.replace('{{url}}', data.url))
       this.initPlay()
     },
@@ -12,7 +14,8 @@
       let audio = $(this.el).find('audio')[0]
       audio.autoplay = true
       audio.oncanplay = function(){
-        $(this.el).find('.disc-container').addClass('playing')
+        $('.disc-container').addClass('playing')
+        $('.light').addClass('playing')
       }
     },
     play(){
@@ -20,12 +23,14 @@
       audio.play()
       $('.pause').removeClass('pausing')
       $('.disc-container').addClass('playing')
+      $('.light').addClass('playing')
     },
     pause(){
       let audio = $(this.el).find('audio')[0]
       audio.pause()
       $('.pause').addClass('pausing')
       $('.disc-container').removeClass('playing')
+      $('.light').removeClass('playing')
     }
   }
   let model = {

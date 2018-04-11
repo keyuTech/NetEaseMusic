@@ -21,10 +21,11 @@ a {
 }
 
 
-.page {
+#app {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 .bg {
   height: 100vh;
