@@ -14,7 +14,11 @@
       let { songs, selectedId } = data
       let liList = songs.map((song) => {
         let li = $('<li></li>').text(song.name).attr('data-id', song.id)
-        if(song.id === data.selectedId){
+        let svg = $(`<svg class="icon" aria-hidden="true">
+                      <use xlink:href="#icon-music"></use>
+                    </svg>`)
+        li.prepend(svg)
+        if (song.id === data.selectedId) {
           li.addClass('active')
         }
         return li
@@ -37,14 +41,13 @@
       let query = new AV.Query('Song')
       return query.find().then((songs) => {
         this.data.songs = songs.map((song) => {
-          console.log(1)
-          console.log(song)
           return {
             id: song.id,
             name: song.attributes.name,
             singer: song.attributes.singer,
             url: song.attributes.url,
-            cover: song.attributes.cover
+            cover: song.attributes.cover,
+            lyric: song.attributes.lyric
           }
         })
         return songs
@@ -96,8 +99,8 @@
       })
       window.eventHub.on('update', (song) => {
         let songs = this.model.data.songs
-        for(let i = 0; i < songs.length; i++){
-          if(songs[i].id === song.id){
+        for (let i = 0; i < songs.length; i++) {
+          if (songs[i].id === song.id) {
             Object.assign(songs[i], song)
           }
         }

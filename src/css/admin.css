@@ -27,9 +27,29 @@ a {
   color: inherit;
 }
 
+header {
+  height: 8vh;
+  background-color: #d43c33;
+  display: flex;
+  align-items: center;
+}
+
+header div {
+  align-self: flex-start;
+  height: 90%;
+  width: 100%;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  background-color: #292929;
+}
+
+header svg {
+  height: 5vh;
+}
+
 .page {
   display: flex;
-  height: 100vh;
+  height: 92vh;
 }
 
 .page aside {
@@ -42,6 +62,12 @@ a {
   flex-grow: 1;
 }
 
+aside {
+  -webkit-box-shadow: 4px 4px 18px 1px rgba(158, 158, 158, 0.9);
+  -moz-box-shadow: 4px 4px 18px 1px rgba(158, 158, 158, 0.9);
+  box-shadow: 4px 4px 18px 1px rgba(158, 158, 158, 0.9);
+}
+
 aside .newSong {
   font-size: 18px;
   text-align: center;
@@ -51,22 +77,44 @@ aside .newSong {
 }
 
 aside .newSong.active {
-  background-color: #d4d4d4;
+  background-color: #c7c7c7;
 }
 
 aside .songListContainer {
   flex-grow: 1;
 }
 
+aside .songList li:nth-child(even) {
+  background-color: #eeeeef;
+}
+
+aside .songList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 aside .songList li {
+  width: 100%;
   border-bottom: 1px solid #aaa;
   padding: 10px;
-  margin-left: 10px;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+aside .songList li .icon {
+  width: 1.4em;
+  height: 1.4em;
+  fill: currentColor;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 8px;
 }
 
 aside .songList li.active {
-  background-color: #d4d4d4;
+  background-color: #c7c7c7;
 }
 
 .uploadArea {
@@ -75,11 +123,10 @@ aside .songList li.active {
 }
 
 #container {
-  border: 2px dashed #888;
+  border-top: 2px solid #888;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
   width: 20vw;
   flex-direction: column;
 }
@@ -89,15 +136,20 @@ aside .pickfiles {
   padding: 50px 20px;
 }
 
+aside .pickfiles p {
+  font-size: 14px;
+  color: #888;
+}
+
 aside .pickfiles p.uploadButton {
+  color: #000;
   font-size: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 main {
   display: flex;
   flex-direction: row;
-  background-color: #d4d4d4;
   padding: 40px 20px;
 }
 
@@ -122,21 +174,29 @@ main form .row {
 }
 
 main form .row input[type='text'] {
-  border: 1px solid #ddd;
+  border: 1px solid #aaa;
   border-radius: 5px;
   padding: 8px 12px;
   width: 25vw;
 }
 
 main form .row input[type='submit'] {
+  color: #d43c33;
   margin-left: 5em;
   height: 34px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border: 1px solid #ddd;
+  padding-left: 32px;
+  padding-right: 32px;
+  border: 1px solid #d43c33;
   border-radius: 5px;
   background-color: #fff;
   cursor: pointer;
+}
+
+main form .row textarea {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 8px 12px;
+  width: 25vw;
 }
 
 main .coverArea {

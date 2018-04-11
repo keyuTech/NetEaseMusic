@@ -31,6 +31,12 @@
         <input name="cover" type="text" value="__cover__">
       </div>
       <div class="row">
+        <label>
+          歌词
+        </label>
+        <textarea name="lyric" rows="20">__lyric__</textarea>
+      </div>
+      <div class="row">
         <input type="submit" value="保存">
       </div>
     </form>
@@ -42,7 +48,7 @@
     </div>
     `,
     render(data = {}) {
-      let placeholders = ['name', 'singer', 'url', 'cover', 'id']
+      let placeholders = ['name', 'singer', 'url', 'cover', 'lyric', 'id']
       let html = this.template
       placeholders.map((string) => {
         html = html.replace(`__${string}__`, data[string] || '').replace('__cover-url__', data.cover || '')
@@ -69,6 +75,7 @@
       singer: '',
       url: '',
       cover: '',
+      lyric: '',
       id: ''
     },
     create(data) {
@@ -78,6 +85,7 @@
       song.set('singer', data.singer)
       song.set('url', data.url)
       song.set('cover', data.cover)
+      song.set('lyric', data.lyric)
       return song.save().then((newSong) => {
         let { id, attributes } = newSong
         Object.assign(this.data, {
@@ -85,7 +93,8 @@
           name: attributes.name,
           singer: attributes.singer,
           url: attributes.url,
-          cover: attributes.cover
+          cover: attributes.cover,
+          lyric: attributes.lyric
         })
       }, (error) => {
         console.error(error)
@@ -97,6 +106,7 @@
       song.set('singer', data.singer)
       song.set('url', data.url)
       song.set('cover', data.cover)
+      song.set('lyric', data.lyric)
       return song.save().then((response) => {
         Object.assign(this.data, data)
         return response
@@ -117,12 +127,11 @@
       window.eventHub.on('new', (data) => {
         if (this.model.data.id) {
           this.model.data = {
-            id: '', name: '', singer: '', url: '', cover: ''
+            id: '', name: '', singer: '', url: '', cover: '', lyric: ''
           }
         } else {
           Object.assign(this.model.data, data)
         }
-        console.log(this.model.data)
         this.view.render(this.model.data)
       })
     },
@@ -132,6 +141,7 @@
       need.map((string) => {
         data[string] = this.view.$el.find(`input[name="${string}"]`).val()
       })
+      data.lyric = this.view.$el.find('textarea').val()
       this.model.create(data).then(() => {
         this.view.render({})
         let string = JSON.stringify(this.model.data)
@@ -145,6 +155,7 @@
       need.map((string) => {
         data[string] = this.view.$el.find(`input[name="${string}"]`).val()
       })
+      data.lyric = this.view.$el.find('textarea').val()
       this.model.update(data).then(() => {
         let copy = JSON.stringify(this.model.data)
         let object = JSON.parse(copy)
@@ -168,6 +179,9 @@
       this.view.$el.on('click', '.cover', () => {
         this.previewCover()
       })
+      // this.view.$el.on('change', 'textarea', () => {
+      //   this.previewCover()
+      // })
     }
   }
   controller.init(view, model)
