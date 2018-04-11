@@ -28,28 +28,37 @@
         <label>
           封面链接
         </label>
-        <input name="cover" type="text">
+        <input name="cover" type="text" value="__cover__">
       </div>
       <div class="row">
         <input type="submit" value="保存">
       </div>
     </form>
     <div class="coverArea">
-      <p>封面</p>
-      <div class="cover"></div>
+      <div class="cover">
+        <span>点击预览封面</span>
+        <img src="__cover-url__"/>
+      </div>
     </div>
     `,
     render(data = {}) {
-      let placeholders = ['name', 'singer', 'url', 'id']
+      let placeholders = ['name', 'singer', 'url', 'cover', 'id']
       let html = this.template
       placeholders.map((string) => {
-        html = html.replace(`__${string}__`, data[string] || '')
+        html = html.replace(`__${string}__`, data[string] || '').replace('__cover-url__', data.cover || '')
       })
       $(this.el).html(html)
       if (data.id) {
-        $(this.el).prepend("<h1>编辑歌曲</h1>")
+        $(this.el).find('form').prepend("<h1>编辑歌曲</h1>")
       } else {
-        $(this.el).prepend("<h1>新建歌曲</h1>")
+        $(this.el).find('form').prepend("<h1>新建歌曲</h1>")
+      }
+      if (data.cover) {
+        $(this.el).find('img').removeClass('hide')
+        $(this.el).find('.cover > span').addClass('hide')
+      } else {
+        $(this.el).find('img').addClass('hide')
+        $(this.el).find('.cover > span').removeClass('hide')
       }
     }
   }
@@ -59,6 +68,7 @@
       name: '',
       singer: '',
       url: '',
+      cover: '',
       id: ''
     },
     create(data) {
@@ -67,23 +77,26 @@
       song.set('name', data.name)
       song.set('singer', data.singer)
       song.set('url', data.url)
+      song.set('cover', data.cover)
       return song.save().then((newSong) => {
         let { id, attributes } = newSong
         Object.assign(this.data, {
           id: id,
           name: attributes.name,
           singer: attributes.singer,
-          url: attributes.url
+          url: attributes.url,
+          cover: attributes.cover
         })
       }, (error) => {
         console.error(error)
       })
     },
-    update(data){
+    update(data) {
       var song = AV.Object.createWithoutData('Song', this.data.id)
       song.set('name', data.name)
       song.set('singer', data.singer)
       song.set('url', data.url)
+      song.set('cover', data.cover)
       return song.save().then((response) => {
         Object.assign(this.data, data)
         return response
@@ -104,7 +117,7 @@
       window.eventHub.on('new', (data) => {
         if (this.model.data.id) {
           this.model.data = {
-            id: '', name: '', singer: '', url: ''
+            id: '', name: '', singer: '', url: '', cover: ''
           }
         } else {
           Object.assign(this.model.data, data)
@@ -127,16 +140,21 @@
       })
     },
     update() {
-      let need = 'name singer url'.split(' ')
+      let need = 'name singer url cover'.split(' ')
       let data = {}
       need.map((string) => {
         data[string] = this.view.$el.find(`input[name="${string}"]`).val()
       })
-      this.model.update(data).then(()=>{
+      this.model.update(data).then(() => {
         let copy = JSON.stringify(this.model.data)
         let object = JSON.parse(copy)
         window.eventHub.trigger('update', object)
       })
+    },
+    previewCover() {
+      let coverUrl = this.view.$el.find('input[name="cover"]').val()
+      this.model.data.cover = coverUrl
+      this.view.render(this.model.data)
     },
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
@@ -146,6 +164,9 @@
         } else {
           this.create()
         }
+      })
+      this.view.$el.on('click', '.cover', () => {
+        this.previewCover()
       })
     }
   }

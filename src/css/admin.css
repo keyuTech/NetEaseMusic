@@ -4,31 +4,44 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
 *::before {
   box-sizing: border-box;
 }
+
 *::after {
   box-sizing: border-box;
 }
-ul, li {
+
+.hide {
+  display: none;
+}
+
+ul,
+li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 .page {
   display: flex;
   height: 100vh;
 }
+
 .page aside {
   width: 20vw;
   display: flex;
   flex-direction: column;
 }
+
 .page main {
   flex-grow: 1;
 }
+
 aside .newSong {
   font-size: 18px;
   text-align: center;
@@ -36,25 +49,31 @@ aside .newSong {
   border-bottom: 2px solid #888;
   cursor: pointer;
 }
+
 aside .newSong.active {
   background-color: #d4d4d4;
 }
+
 aside .songListContainer {
   flex-grow: 1;
 }
+
 aside .songList li {
   border-bottom: 1px solid #aaa;
   padding: 10px;
   margin-left: 10px;
   cursor: pointer;
 }
+
 aside .songList li.active {
   background-color: #d4d4d4;
 }
+
 .uploadArea {
   text-align: center;
   display: flex;
 }
+
 #container {
   border: 2px dashed #888;
   display: flex;
@@ -64,42 +83,51 @@ aside .songList li.active {
   width: 20vw;
   flex-direction: column;
 }
+
 aside .pickfiles {
   cursor: pointer;
   padding: 50px 20px;
 }
+
 aside .pickfiles p.uploadButton {
   font-size: 15px;
   margin-bottom: 10px;
 }
+
 main {
   display: flex;
   flex-direction: row;
   background-color: #d4d4d4;
   padding: 40px 20px;
 }
+
 main form {
   display: flex;
   flex-direction: column;
   font-size: 18px;
 }
+
 main h1 {
   font-size: 22px;
 }
+
 main form .row label {
   width: 5em;
 }
+
 main form .row {
   display: flex;
   margin: 10px;
   align-items: center;
 }
+
 main form .row input[type='text'] {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 8px 12px;
   width: 25vw;
 }
+
 main form .row input[type='submit'] {
   margin-left: 5em;
   height: 34px;
@@ -110,18 +138,31 @@ main form .row input[type='submit'] {
   background-color: #fff;
   cursor: pointer;
 }
+
 main .coverArea {
   min-width: 30vw;
   max-height: 30vw;
   margin-left: 5vw;
 }
-main .coverArea p {
-  margin-bottom: 10px;
-}
+
 main .coverArea .cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px dashed #888;
   width: 100%;
   height: 100%;
   background-color: #fff;
+  border-radius: 20px;
+}
+
+main .coverArea .cover>span {
+  font-size: 20px;
+  color: #666;
+}
+
+main .coverArea .cover>img {
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
 }
